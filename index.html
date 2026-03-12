@@ -5,25 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arthur Xie - Research Portfolio</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 50px auto; padding: 20px; line-height: 1.6; color: #333; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        h2 { color: #2980b9; margin-top: 30px; border-left: 5px solid #2980b9; padding-left: 15px; }
-        .subtitle { font-size: 1.2em; color: #7f8c8d; font-style: italic; }
-        .section { margin: 40px 0; }
-        .paper-item { margin-bottom: 30px; padding: 15px; background: #fdfdfd; border: 1px solid #eee; border-radius: 5px; }
-        .paper-title { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 5px; }
-        .code-block { background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; overflow-x: auto; margin-top: 10px; display: none; border-left: 3px solid #27ae60; }
-        .toggle-btn { background: #ebf5fb; border: 1px solid #2980b9; color: #2980b9; padding: 5px 10px; cursor: pointer; border-radius: 3px; font-size: 0.8em; margin-top: 10px; transition: 0.3s; }
-        .toggle-btn:hover { background: #2980b9; color: white; }
-        .tech-tag { display: inline-block; background: #e8f8f5; color: #16a085; padding: 2px 8px; border-radius: 12px; font-size: 0.75em; margin-right: 5px; }
-        a { color: #2980b9; text-decoration: none; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 5px; }
+        h2 { color: #2980b9; margin-top: 35px; border-left: 5px solid #2980b9; padding-left: 15px; text-transform: uppercase; font-size: 1.2em; letter-spacing: 1px; }
+        .subtitle { font-size: 1.2em; color: #7f8c8d; font-style: italic; margin-bottom: 30px; }
+        .section { margin: 30px 0; }
+        .paper-item { margin-bottom: 25px; padding: 18px; background: #fff; border: 1px solid #e1e8ed; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .paper-title { font-weight: bold; font-size: 1.1em; color: #2c3e50; }
+        .paper-meta { display: block; color: #666; font-size: 0.95em; margin: 4px 0; }
+        .code-block { background: #1e1e1e; color: #dcdcdc; padding: 15px; border-radius: 5px; font-family: 'Consolas', 'Monaco', monospace; font-size: 0.85em; overflow-x: auto; margin-top: 15px; display: none; border-left: 4px solid #3498db; }
+        .toggle-btn { background: #f0f7ff; border: 1px solid #3498db; color: #3498db; padding: 6px 12px; cursor: pointer; border-radius: 4px; font-size: 0.8em; margin-top: 10px; font-weight: 600; }
+        .toggle-btn:hover { background: #3498db; color: white; }
+        .tech-tag { display: inline-block; background: #ebf5fb; color: #2980b9; padding: 2px 10px; border-radius: 12px; font-size: 0.75em; margin-right: 6px; font-weight: 600; }
+        a { color: #3498db; text-decoration: none; }
         a:hover { text-decoration: underline; }
+        .bullet-point { margin-left: 20px; font-size: 0.9em; color: #555; display: block; margin-top: 8px; }
     </style>
     <script>
         function toggleCode(id) {
             var x = document.getElementById(id);
-            if (x.style.display === "none") { x.style.display = "block"; } 
-            else { x.style.display = "none"; }
+            x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
         }
     </script>
 </head>
@@ -33,100 +34,116 @@
     
     <div class="section">
         <h2>About</h2>
-        <p>Applied economist with over three years of institutional experience at the International Monetary Fund (APD & SPR). My research focuses on regional surveillance in Asia, sovereign debt sustainability frameworks, and the empirical analysis of industrial policy. This portfolio hosts my recent publications and documented replication code.</p>
+        <p>I am a Research Analyst focused on the intersection of trade dynamics, sovereign debt sustainability, and Chinese macroeconomic policy. With three years of experience at the International Monetary Fund (APD & SPR), I specialize in building reproducible empirical frameworks to inform regional surveillance and policy evaluation.</p>
     </div>
     
     <div class="section">
-        <h2>Publications & Empirical Work</h2>
+        <h2>Selected Publications & Research</h2>
 
         <div class="paper-item">
+            <span class="tech-tag">Python (NLP)</span><span class="tech-tag">Working Paper</span>
             <span class="paper-title">“Industrial Policy in Asia” (Forthcoming)</span>
-            <span>IMF Working Paper (2026) | Asia in 2050 Conference</span>
-            <br><a href="https://www.imf.org/en/news/seminars/conferences/2026/03/04/asia-in-2050-conference" target="_blank">View Conference Page &rarr;</a>
-            <div style="margin-top:8px;">
-                <span class="tech-tag">Python (NLP)</span><span class="tech-tag">Text Analytics</span><span class="tech-tag">Global Trade Alerts</span>
-            </div>
-            <button class="toggle-btn" onclick="toggleCode('code1')">Show Python Text-Mining Logic</button>
+            <span class="paper-meta">IMF Asia in 2050 Conference | Asia-Pacific Department (APD)</span>
+            <span class="bullet-point">• Constructed a novel dataset using Python-based text analytics on Global Trade Alerts to quantify Asian industrial policy evolution.</span>
+            <button class="toggle-btn" onclick="toggleCode('code1')">View Python Text-Mining Logic</button>
             <div id="code1" class="code-block">
-# Sample NLP Logic: Extracting Industrial Policy Interventions
+# NLP Logic: Pattern Matching for Policy Classification
 import pandas as pd
-import spacy
+import re
 
-def extract_policy_terms(text):
-    nlp = spacy.load("en_core_web_sm")
-    doc = nlp(text)
-    keywords = ["subsidy", "tax incentive", "vertical intervention", "export credit"]
-    found = [token.text for token in doc if token.text.lower() in keywords]
-    return list(set(found))
+def classify_intervention(text):
+    # Regex for vertical vs horizontal interventions
+    vertical_patterns = r"(semiconductor|EV battery|green hydrogen|specific sector)"
+    horizontal_patterns = r"(tax credit|R&D incentive|broad subsidy)"
+    
+    if re.search(vertical_patterns, text, re.I): return 'Vertical'
+    if re.search(horizontal_patterns, text, re.I): return 'Horizontal'
+    return 'Other'
 
-# Analysis of GTA database for Asian economies
-df['policy_type'] = df['description'].apply(extract_policy_terms)
+df['policy_type'] = df['intervention_desc'].apply(classify_intervention)
             </div>
         </div>
 
         <div class="paper-item">
-            <span class="paper-title">“Outlook for the Asia-Pacific: Navigating Trade Headwinds and Rebalancing Growth”</span>
-            <span>IMF Regional Economic Outlook (Oct 2025)</span>
-            <br><a href="https://www.elibrary.imf.org/display/book/9798229025881/front-1.xml" target="_blank">View Full Text &rarr;</a>
-            <div style="margin-top:8px;">
-                <span class="tech-tag">Stata</span><span class="tech-tag">VECM/VAR</span><span class="tech-tag">High-Frequency Data</span>
-            </div>
-            <button class="toggle-btn" onclick="toggleCode('code2')">Show Stata VECM Logic</button>
-            <div id="code2" class="code-block">
-* Sample VECM for Regional Trade Dynamics
-* Identifying long-run relationship between Trade Flow and REER
-vecrank log_trade log_reer log_gdp, trend(lconstant)
-vec log_trade log_reer log_gdp, lag(2) rank(1)
-
-* Impulse Response Functions
-irf create v1, set(trade_shocks) replace
-irf graph oirf, impulse(log_reer) response(log_trade)
-            </div>
+            <span class="paper-title">“Navigating Trade Headwinds and Rebalancing Growth”</span>
+            <span class="paper-meta">IMF Asia-Pacific Regional Economic Outlook (Oct 2025)</span>
+            <a href="https://www.elibrary.imf.org/display/book/9798229025881/front-1.xml" target="_blank">Access Publication &rarr;</a>
         </div>
 
         <div class="paper-item">
-            <span class="paper-title">“Outlook for the Asia-Pacific: Navigating Structural Shifts—Aging, Innovation, and Trade”</span>
-            <span>IMF Regional Economic Outlook (Apr 2025)</span>
-            <br><a href="https://www.elibrary.imf.org/display/book/9798400287220/CH001.xml" target="_blank">View Full Text &rarr;</a>
-            <div style="margin-top:8px;">
-                <span class="tech-tag">Stata</span><span class="tech-tag">Demographic Modeling</span><span class="tech-tag">Panel Data</span>
-            </div>
-            <button class="toggle-btn" onclick="toggleCode('code3')">Show Stata Panel Regression</button>
+            <span class="tech-tag">Stata (Panel Data)</span><span class="tech-tag">Analytical Chapter</span>
+            <span class="paper-title">“Navigating Structural Shifts—Aging, Innovation, and Trade”</span>
+            <span class="paper-meta">IMF Asia-Pacific Regional Economic Outlook (Apr 2025)</span>
+            <span class="bullet-point">• Provided empirical support for the analytical chapter regarding demographic impacts on regional innovation.</span>
+            <button class="toggle-btn" onclick="toggleCode('code3')">View Stata Analytical Logic</button>
             <div id="code3" class="code-block">
-* Fixed Effects model: Impact of Aging on Capital Flows
+* Impact of Aging on Innovation (Patent Filings)
 xtset country_id year
-xtreg cap_inflow dependency_ratio gdp_growth i.year, fe cluster(country_id)
+* Fixed Effects model with country and year dummies
+xtreg log_patents old_age_dependency log_gdp_pc rd_expenditure i.year, fe cluster(country_id)
+
+* Robustness check: GMM for dynamic panel concerns
+xtabond2 log_patents L.log_patents old_age_dependency, gmm(log_patents, lag(2 3)) iv(i.year) robust
             </div>
         </div>
 
         <div class="paper-item">
-            <span class="paper-title">“Outlook for the Asia-Pacific: Resilient Growth but Higher Risks”</span>
-            <span>IMF Regional Economic Outlook (Nov 2024)</span>
-            <br><a href="https://www.elibrary.imf.org/display/book/9798400287220/9798400287220.xml" target="_blank">View Full Text &rarr;</a>
-            <div style="margin-top:8px;">
-                <span class="tech-tag">Python (Pandas)</span><span class="tech-tag">Bloomberg API</span><span class="tech-tag">Automation</span>
-            </div>
-            <button class="toggle-btn" onclick="toggleCode('code4')">Show Data Pipeline Snippet</button>
-            <div id="code4" class="code-block">
-# Automated surveillance: Bloomberg Data Retrieval
-from xbbg import blp
-import matplotlib.pyplot as plt
+            <span class="paper-title">“Resilient Growth but Higher Risks”</span>
+            <span class="paper-meta">IMF Asia-Pacific Regional Economic Outlook (Oct 2024)</span>
+            <a href="https://www.elibrary.imf.org/display/book/9798400287220/9798400287220.xml" target="_blank">Access Publication &rarr;</a>
+        </div>
 
-def get_yield_curves(tickers):
-    data = blp.bdh(tickers, 'px_last', '2024-01-01', '2024-11-01')
-    return data.pct_change().dropna()
+        <div class="paper-item">
+            <span class="tech-tag">Python (SQL/Data)</span><span class="tech-tag">Stata</span>
+            <span class="paper-title">Review of the Bank-Fund Debt Sustainability Framework for Low-Income Countries</span>
+            <span class="paper-meta">Strategic, Policy and Review Department (SPR) | Joint IMF-World Bank</span>
+            <span class="bullet-point">• Developed a comprehensive historical database (2017–2023) to evaluate DSF performance.</span>
+            <button class="toggle-btn" onclick="toggleCode('code5')">View Database Integration Logic</button>
+            <div id="code5" class="code-block">
+# Python: Reconciling disparate DSF Excel sources into a master panel
+import pandas as pd
+import glob
 
-# Visualizing regional volatility
-get_yield_curves(['USGG10YR Index', 'GJGB10 Index']).plot()
+def compile_dsf_panel(folder_path):
+    all_files = glob.glob(folder_path + "/*.xlsx")
+    panel_data = []
+    for f in all_files:
+        temp_df = pd.read_excel(f, sheet_name='Summary')
+        # Extract metadata: Country, Vintage, Debt-to-GDP
+        panel_data.append(temp_df[['country', 'year', 'dsa_rating']])
+    return pd.concat(panel_data)
+
+# Stata: Empirical evaluation of rating transitions
+* tab dsa_rating_t dsa_rating_tminus1, matcell(transitions)
             </div>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-title">Somalia: Heavily Indebted Poor Countries (HIPC) Completion Point Analysis</span>
+            <span class="paper-meta">Strategic, Policy and Review Department (SPR) | Dec 2023</span>
+            <span class="bullet-point">• Reconciled bilateral/multilateral creditor data and produced sustainability projections.</span>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-title">UN: Financing for Sustainable Development Report 2023 – Chapter 3</span>
+            <span class="paper-meta">Joint IMF-UN Project | Apr 2023</span>
+            <span class="bullet-point">• Produced comparative analysis on debt vulnerabilities for emerging markets.</span>
         </div>
     </div>
     
+    <div class="section">
+        <h2>Technical Stack</h2>
+        <p>
+            <strong>Programming:</strong> Stata, Python (Pandas, Scikit-learn, Spacy), R, SQL <br>
+            <strong>Visualization:</strong> PowerBI, Tableau, Matplotlib, Plotly <br>
+            <strong>Databases:</strong> Bloomberg, Haver, CEIC, IMF PortWatch, Global Trade Alert
+        </p>
+    </div>
+
     <div class="section">
         <h2>Contact</h2>
         <p>
             <a href="https://www.linkedin.com/in/arthur-xie-9b1a0a1a/" target="_blank">LinkedIn</a> | 
-            <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a> | 
             <a href="mailto:arthur.xie@example.com">Email</a>
         </p>
     </div>
