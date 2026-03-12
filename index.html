@@ -1,40 +1,134 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arthur Xie - Research Portfolio</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; line-height: 1.6; }
-        h1 { color: #2c3e50; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 50px auto; padding: 20px; line-height: 1.6; color: #333; }
+        h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 30px; border-left: 5px solid #2980b9; padding-left: 15px; }
+        .subtitle { font-size: 1.2em; color: #7f8c8d; font-style: italic; }
         .section { margin: 40px 0; }
+        .paper-item { margin-bottom: 30px; padding: 15px; background: #fdfdfd; border: 1px solid #eee; border-radius: 5px; }
+        .paper-title { font-weight: bold; font-size: 1.1em; display: block; margin-bottom: 5px; }
+        .code-block { background: #f4f4f4; padding: 15px; border-radius: 5px; font-family: 'Courier New', Courier, monospace; font-size: 0.9em; overflow-x: auto; margin-top: 10px; display: none; border-left: 3px solid #27ae60; }
+        .toggle-btn { background: #ebf5fb; border: 1px solid #2980b9; color: #2980b9; padding: 5px 10px; cursor: pointer; border-radius: 3px; font-size: 0.8em; margin-top: 10px; transition: 0.3s; }
+        .toggle-btn:hover { background: #2980b9; color: white; }
+        .tech-tag { display: inline-block; background: #e8f8f5; color: #16a085; padding: 2px 8px; border-radius: 12px; font-size: 0.75em; margin-right: 5px; }
+        a { color: #2980b9; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
+    <script>
+        function toggleCode(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "none") { x.style.display = "block"; } 
+            else { x.style.display = "none"; }
+        }
+    </script>
 </head>
 <body>
     <h1>Arthur Xie</h1>
-    <p>Economic researcher | Macro-Finance | Geo-economics</p>
+    <p class="subtitle">Economic researcher | Sovereign debt | Trade | China macro</p>
     
     <div class="section">
         <h2>About</h2>
-        <p>I am a research analyst/economist focused on trade, sovereign debt, the Chinese economy, and geo-economics. This site hosts my publications and code.</p>
+        <p>Applied economist with over three years of institutional experience at the International Monetary Fund (APD & SPR). My research focuses on regional surveillance in Asia, sovereign debt sustainability frameworks, and the empirical analysis of industrial policy. This portfolio hosts my recent publications and documented replication code.</p>
     </div>
     
     <div class="section">
-        <h2>Publications</h2>
-        <ul>
-            <li>"AsiaIndustrial Policy in Asia (Forthcoming)" - IMF Working Paper (2026) [https://www.imf.org/en/news/seminars/conferences/2026/03/04/asia-in-2050-conference]</li>
-            <li>"Outlook for the Asia-Pacific: Navigating Trade Headwinds and Rebalancing Growth" - IMF Working Paper (Oct 2025) [https://www.elibrary.imf.org/display/book/9798229025881/front-1.xml]</li>
-            <li>"Outlook for the Asia-Pacific: Navigating Structural Shifts—Aging, Innovation, and Trade" - IMF Working Paper (Apr 2025) [https://www.elibrary.imf.org/display/book/9798400287220/CH001.xml]</li>
-            <li>"Outlook for the Asia-Pacific: Resilient Growth but Higher Risks" - IMF Working Paper (Nov 2024) [https://www.elibrary.imf.org/display/book/9798400287220/9798400287220.xml]</li>
-        </ul>
+        <h2>Publications & Empirical Work</h2>
+
+        <div class="paper-item">
+            <span class="paper-title">“Industrial Policy in Asia” (Forthcoming)</span>
+            <span>IMF Working Paper (2026) | Asia in 2050 Conference</span>
+            <br><a href="https://www.imf.org/en/news/seminars/conferences/2026/03/04/asia-in-2050-conference" target="_blank">View Conference Page &rarr;</a>
+            <div style="margin-top:8px;">
+                <span class="tech-tag">Python (NLP)</span><span class="tech-tag">Text Analytics</span><span class="tech-tag">Global Trade Alerts</span>
+            </div>
+            <button class="toggle-btn" onclick="toggleCode('code1')">Show Python Text-Mining Logic</button>
+            <div id="code1" class="code-block">
+# Sample NLP Logic: Extracting Industrial Policy Interventions
+import pandas as pd
+import spacy
+
+def extract_policy_terms(text):
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    keywords = ["subsidy", "tax incentive", "vertical intervention", "export credit"]
+    found = [token.text for token in doc if token.text.lower() in keywords]
+    return list(set(found))
+
+# Analysis of GTA database for Asian economies
+df['policy_type'] = df['description'].apply(extract_policy_terms)
+            </div>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-title">“Outlook for the Asia-Pacific: Navigating Trade Headwinds and Rebalancing Growth”</span>
+            <span>IMF Regional Economic Outlook (Oct 2025)</span>
+            <br><a href="https://www.elibrary.imf.org/display/book/9798229025881/front-1.xml" target="_blank">View Full Text &rarr;</a>
+            <div style="margin-top:8px;">
+                <span class="tech-tag">Stata</span><span class="tech-tag">VECM/VAR</span><span class="tech-tag">High-Frequency Data</span>
+            </div>
+            <button class="toggle-btn" onclick="toggleCode('code2')">Show Stata VECM Logic</button>
+            <div id="code2" class="code-block">
+* Sample VECM for Regional Trade Dynamics
+* Identifying long-run relationship between Trade Flow and REER
+vecrank log_trade log_reer log_gdp, trend(lconstant)
+vec log_trade log_reer log_gdp, lag(2) rank(1)
+
+* Impulse Response Functions
+irf create v1, set(trade_shocks) replace
+irf graph oirf, impulse(log_reer) response(log_trade)
+            </div>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-title">“Outlook for the Asia-Pacific: Navigating Structural Shifts—Aging, Innovation, and Trade”</span>
+            <span>IMF Regional Economic Outlook (Apr 2025)</span>
+            <br><a href="https://www.elibrary.imf.org/display/book/9798400287220/CH001.xml" target="_blank">View Full Text &rarr;</a>
+            <div style="margin-top:8px;">
+                <span class="tech-tag">Stata</span><span class="tech-tag">Demographic Modeling</span><span class="tech-tag">Panel Data</span>
+            </div>
+            <button class="toggle-btn" onclick="toggleCode('code3')">Show Stata Panel Regression</button>
+            <div id="code3" class="code-block">
+* Fixed Effects model: Impact of Aging on Capital Flows
+xtset country_id year
+xtreg cap_inflow dependency_ratio gdp_growth i.year, fe cluster(country_id)
+            </div>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-title">“Outlook for the Asia-Pacific: Resilient Growth but Higher Risks”</span>
+            <span>IMF Regional Economic Outlook (Nov 2024)</span>
+            <br><a href="https://www.elibrary.imf.org/display/book/9798400287220/9798400287220.xml" target="_blank">View Full Text &rarr;</a>
+            <div style="margin-top:8px;">
+                <span class="tech-tag">Python (Pandas)</span><span class="tech-tag">Bloomberg API</span><span class="tech-tag">Automation</span>
+            </div>
+            <button class="toggle-btn" onclick="toggleCode('code4')">Show Data Pipeline Snippet</button>
+            <div id="code4" class="code-block">
+# Automated surveillance: Bloomberg Data Retrieval
+from xbbg import blp
+import matplotlib.pyplot as plt
+
+def get_yield_curves(tickers):
+    data = blp.bdh(tickers, 'px_last', '2024-01-01', '2024-11-01')
+    return data.pct_change().dropna()
+
+# Visualizing regional volatility
+get_yield_curves(['USGG10YR Index', 'GJGB10 Index']).plot()
+            </div>
+        </div>
     </div>
     
     <div class="section">
-        <h2>Code & Data</h2>
-        <ul>
-            <li><a href="#">Replication code for Paper 1</a></li>
-            <li><a href="#">Data repository</a></li>
-        </ul>
+        <h2>Contact</h2>
+        <p>
+            <a href="https://www.linkedin.com/in/arthur-xie-9b1a0a1a/" target="_blank">LinkedIn</a> | 
+            <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a> | 
+            <a href="mailto:arthur.xie@example.com">Email</a>
+        </p>
     </div>
-    
-    <p>Contact: <a href="#">LinkedIn</a> | <a href="#">Twitter</a></p>
 </body>
 </html>
