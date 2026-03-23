@@ -18,10 +18,12 @@
         .code-block { background: #1a202c; color: #edf2f7; padding: 18px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.85em; overflow-x: auto; margin-top: 15px; display: none; border-left: 4px solid #63b3ed; }
         .toggle-btn { background: #ebf8ff; border: 1px solid #90cdf4; color: #2c5282; padding: 5px 12px; cursor: pointer; border-radius: 3px; font-size: 0.75em; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
         .toggle-btn:hover { background: #bee3f8; }
+        
         .cv-container { margin-top: 20px; margin-bottom: 30px; }
         .cv-btn { background: #2c5282; color: white !important; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 0.95em; text-decoration: none; display: inline-block; border: none; transition: background 0.3s; }
         .cv-btn:hover { background: #1a365d; border-bottom: none !important; }
         .update-note { font-size: 0.85em; color: #718096; margin-left: 12px; font-style: italic; vertical-align: middle; }
+
         .tech-tag { display: inline-block; background: #edf2f7; color: #4a5568; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; margin-bottom: 8px; font-weight: 700; border: 1px solid #e2e8f0; }
         a { color: #3182ce; text-decoration: none; border-bottom: 1px solid transparent; }
         a:hover { border-bottom: 1px solid #3182ce; }
@@ -49,10 +51,13 @@
     <div class="section">
         <h2>About</h2>
         <p>
-            Macroeconomist with a background spanning multilateral policy research and capital markets surveillance. Currently serves as an economist in Hong Kong covering China and Emerging Asia. 
+            Macroeconomist and research analyst with extensive experience in economic surveillance, sovereign risk, and international trade. Currently based in Hong Kong, I specialize in monthly economic monitoring and the development of quantitative models to assess policy transmission and market outcomes for China and Emerging Asia.
         </p>
         <p>
-            Previously served for three years as a Research Analyst at the International Monetary Fund across the Asia-Pacific Department (APD) and Strategy, Policy, and Review Department (SPR).
+            Previously, I served for three years as a Research Analyst at the <strong>International Monetary Fund</strong>. In the Asia-Pacific Department (Regional Studies), I contributed to the Regional Economic Outlook (REO) through econometric analysis of trade dynamics and industrial policy. In the Strategy, Policy, and Review Department (Debt Policy), I focused on sovereign credit research, LIC-DSF debt sustainability assessments, and the Somalia HIPC restructuring framework.
+        </p>
+        <p>
+            I am passionate about integrating modern data tools, including LLMs and autonomous agents, into institutional research workflows to optimize data harmonization and real-time surveillance.
         </p>
     </div>
 
@@ -62,8 +67,8 @@
             <span class="tech-tag">External Sector | Python (Bloomberg API)</span>
             <span class="paper-title">Equilibrium Exchange Rate Modeling: RMB Misalignment</span>
             <ul class="bullet-list">
-                <li>Reproduction of the Cheung, Chinn, and Fujii (2007) framework using 2026 real-time fundamentals.</li>
-                <li>Utilized pdblp to extract REER, productivity differentials, and NFA data.</li>
+                <li>Reproduction of the Cheung, Chinn, and Fujii (2007) framework using 2026 real-time fundamentals to assess currency valuation risks.</li>
+                <li>Utilized <strong>pdblp</strong> to extract REER, productivity differentials, and NFA data from Bloomberg.</li>
             </ul>
             <button class="toggle-btn" onclick="toggleCode('codeRMB')">View Modeling Logic</button>
             <div id="codeRMB" class="code-block">
@@ -84,7 +89,8 @@ df = con.bdh(tickers, 'PX_LAST', '20100101', '20260315')
             <span class="paper-meta">Asia-Pacific Dept (APD) | IMF Asia in 2050 Conference Paper | 2026</span>
             <span class="paper-title">“Industrial Policy in Asia”</span>
             <ul class="bullet-list">
-                <li>Refactored an automated Python pipeline to harmonize Global Trade Alerts (GTA) with regional indicators.</li>
+                <li>Refactored an automated Python pipeline to harmonize Global Trade Alerts (GTA) with regional macroeconomic indicators.</li>
+                <li>Established the empirical foundation for longitudinal analysis of sectoral industrial policy interventions.</li>
             </ul>
             <button class="toggle-btn" onclick="toggleCode('code1')">View Integration Logic</button>
             <a href="https://github.com/arthurx06/IPWG_GTA_Industrial_Policy_Analysis_ax" target="_blank" style="margin-left: 10px; font-size: 0.85em; font-weight: bold;">View Repository &rarr;</a>
@@ -92,6 +98,7 @@ df = con.bdh(tickers, 'PX_LAST', '20100101', '20260315')
 import pandas as pd
 from GTA_format_func_CL_batch_ax import *
 gta_hs = hs_to_long()
+gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
             </div>
         </div>
 
@@ -127,21 +134,29 @@ gta_hs = hs_to_long()
     </div>
 
     <div class="section">
-        <h2>Technical Expertise</h2>
+        <h2>Technical Expertise & Data Literacy</h2>
         <div class="expertise-grid">
             <div>
                 <strong>Econometric Software</strong>
-                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em;">
+                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em; color: #4a5568;">
                     <li>Stata, Python (Pandas, pdblp), R</li>
+                    <li>Tableau, PowerBI</li>
+                    <li>AI Agent Integration (OpenClaw/LLMs)</li>
                 </ul>
             </div>
             <div>
-                <strong>Databases</strong>
-                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em;">
-                    <li>Haver, CEIC, Bloomberg, IMF PortWatch</li>
+                <strong>Specialized Databases</strong>
+                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em; color: #4a5568;">
+                    <li>Haver Analytics, CEIC, Bloomberg</li>
+                    <li>IMF WEO, IFS, DOTS, PortWatch</li>
+                    <li>Refinitiv, TDM, UN COMTRADE</li>
+                    <li>World Bank IDS, IIF Debt Monitor</li>
                 </ul>
             </div>
         </div>
+        <p style="font-size: 0.85em; margin-top: 15px; color: #718096;">
+            <strong>Core Competencies:</strong> Sovereign Debt Sustainability (LIC-DSF), External Sector Assessment, China-ASEAN Spillovers, Data Harmonization, Geopolitical Risk.
+        </p>
     </div>
 
     <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #a0aec0; font-size: 0.85em;">
