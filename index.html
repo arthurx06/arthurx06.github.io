@@ -3,73 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arthur Xie | Macroeconomist</title>
+    <title>Arthur Xie | Macroeconomic Research & Surveillance</title>
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f4f4; }
-        header { background: #2c3e50; color: #fff; padding: 2rem; text-align: center; border-radius: 8px; margin-bottom: 20px; }
-        h1 { margin: 0; font-size: 2.2rem; }
-        .subtitle { font-style: italic; color: #bdc3c7; margin-top: 5px; }
-        section { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
-        .project-entry { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .project-entry:last-child { border-bottom: none; }
-        .btn { display: inline-block; background: #3498db; color: #fff; padding: 8px 15px; text-decoration: none; border-radius: 5px; font-size: 0.9rem; transition: background 0.3s; margin-top: 10px; }
-        .btn:hover { background: #2980b9; }
-        .tech-stack { font-weight: bold; color: #7f8c8d; font-size: 0.85rem; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; background-color: #fdfdfd; }
+        h1 { color: #1a365d; border-bottom: 3px solid #1a365d; padding-bottom: 10px; margin-bottom: 5px; font-weight: 700; }
+        h2 { color: #2c5282; margin-top: 40px; border-left: 5px solid #2c5282; padding-left: 15px; text-transform: uppercase; font-size: 1.1em; letter-spacing: 1px; }
+        .subtitle { font-size: 1.15em; color: #4a5568; font-weight: 500; margin-bottom: 30px; }
+        .paper-item { margin-bottom: 25px; padding: 20px; background: #fff; border: 1px solid #e2e8f0; border-radius: 4px; transition: 0.2s; }
+        .paper-item:hover { border-color: #cbd5e0; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .paper-title { font-weight: bold; font-size: 1.2em; color: #1a365d; display: block; margin-bottom: 5px; }
+        .paper-meta { color: #2b6cb0; font-size: 0.9em; font-weight: 600; display: block; margin-bottom: 10px; text-transform: uppercase; }
+        .bullet-list { margin: 12px 0 0 0; padding-left: 20px; list-style-type: square; color: #4a5568; font-size: 0.95em; }
+        .bullet-list li { margin-bottom: 8px; }
+        .code-block { background: #1a202c; color: #edf2f7; padding: 18px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.85em; overflow-x: auto; margin-top: 15px; display: none; border-left: 4px solid #63b3ed; }
+        .toggle-btn { background: #ebf8ff; border: 1px solid #90cdf4; color: #2c5282; padding: 5px 12px; cursor: pointer; border-radius: 3px; font-size: 0.75em; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
+        .toggle-btn:hover { background: #bee3f8; }
+        .tech-tag { display: inline-block; background: #edf2f7; color: #4a5568; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; margin-bottom: 8px; font-weight: 700; border: 1px solid #e2e8f0; }
+        a { color: #3182ce; text-decoration: none; border-bottom: 1px solid transparent; }
+        a:hover { border-bottom: 1px solid #3182ce; }
+        .section { margin-bottom: 40px; }
+        .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: #f8fafc; padding: 20px; border-radius: 4px; border: 1px solid #e2e8f0; }
+        .contact-info { font-size: 0.9em; color: #718096; margin-top: 5px; }
     </style>
+    <script>
+        function toggleCode(id) {
+            var x = document.getElementById(id);
+            x.style.display = (x.style.display === "none" || x.style.display === "") ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
-
-<header>
     <h1>Arthur Xie</h1>
     <p class="subtitle">Macroeconomist | Economic Surveillance & Sovereign Risk Researcher</p>
-</header>
-
-<section id="about">
-    <h2>Professional Profile</h2>
-    <p>Economist and Research Analyst with experience at the IMF (Asia-Pacific Department) and Lombard Odier. Specializing in international trade, sovereign risk, and macroeconomic surveillance using advanced econometric modeling in Stata and Python.</p>
-</section>
-
-<section id="research">
-    <h2>Research & Contributions</h2>
-
-    <div class="project-entry">
-        <h3>Structural Change | Data Harmonization</h3>
-        <p><strong>Asia-Pacific Dept (APD) | IMF Asia in 2050 Conference Paper | 2026</strong></p>
-        <p><em>“Industrial Policy in Asia”</em></p>
-        <p>Refactored an automated Python pipeline to harmonize Global Trade Alerts (GTA) with regional macroeconomic indicators. Established the empirical foundation for longitudinal analysis of sectoral industrial policy interventions in Asia.</p>
-        
-        <p class="tech-stack">Keywords: Python, Stata, Global Trade Alert (GTA), NIPO, CPC mapping</p>
-        
-        <a href="https://github.com/arthurx06/IPWG_GTA_Industrial_Policy_Analysis_ax" target="_blank" class="btn">
-            View Stylized Facts Code (Stata)
-        </a>
+    <p class="contact-info">MA (JHU SAIS), BA (UBC) | Bilingual: English & Mandarin Chinese</p>
+    
+    <div class="section">
+        <h2>About</h2>
+        <p>
+            Macroeconomist with a background spanning multilateral policy research and capital markets surveillance. Currently serves as an economist in Hong Kong covering China and Emerging Asia, where responsibilities include monthly economic monitoring, weekly thematic presentations, and the development of quantitative models to evaluate policy transmission and market outcomes.
+        </p>
+        <p>
+            Previously served for three years as a Research Analyst at the International Monetary Fund. Within the Asia-Pacific Department (APD), contributed to the Regional Economic Outlook (REO) through econometric analysis of trade dynamics and industrial policy. Within the Strategy, Policy, and Review Department (SPR), focused on sovereign credit research, LIC-DSF debt sustainability assessments, and the Somalia HIPC restructuring framework. 
+        </p>
+        <p>
+            Experienced in integrating LLMs and autonomous agents into research workflows to optimize data harmonization and real-time surveillance across institutional databases.
+        </p>
     </div>
 
-    <div class="project-entry">
-        <h3>Renminbi (RMB) Misalignment Modeling</h3>
-        <p>Applying the framework of Cheung et al. (2007) to assess RMB valuation using Bloomberg REERCN Index data and Python-based replication scripts.</p>
-        <a href="#" class="btn">Project Details</a>
+    <div class="section">
+        <h2>Current Research & Reproduction</h2>
+        <div class="paper-item" style="border-top: 4px solid #2b6cb0;">
+            <span class="tech-tag">External Sector | Python (Bloomberg API)</span>
+            <span class="paper-title">Equilibrium Exchange Rate Modeling: RMB Misalignment</span>
+            <p style="font-size: 0.95em; color: #4a5568; margin-top: 10px;">
+                Reproduction of the Cheung, Chinn, and Fujii (2007) framework using 2026 real-time fundamentals to assess currency valuation risks.
+            </p>
+            <ul class="bullet-list">
+                <li>Utilized pdblp to extract REER, productivity differentials, and NFA data from Bloomberg.</li>
+                <li>Implemented a Behavioral Equilibrium Exchange Rate (BEER) framework to estimate misalignment levels.</li>
+            </ul>
+            <button class="toggle-btn" onclick="toggleCode('codeRMB')">View Modeling Logic</button>
+            <div id="codeRMB" class="code-block">
+import pdblp
+con = pdblp.BCon(port=8194, timeout=5000)
+con.start()
+# Metrics: REER, Net Foreign Assets, GDP per capita (PPP)
+tickers = ['REERCHIN Index', 'CHNBOPN Index', 'CHGDPPC Index']
+df = con.bdh(tickers, 'PX_LAST', '20100101', '20260315')
+# Framework: Behavioral Equilibrium Exchange Rate (BEER)
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Past Research Contributions</h2>
+
+        <div class="paper-item">
+            <span class="tech-tag">Structural Change | Data Harmonization</span>
+            <span class="paper-meta">Asia-Pacific Dept (APD) | IMF Asia in 2050 Conference Paper | 2026</span>
+            <span class="paper-title">“Industrial Policy in Asia”</span>
+            <ul class="bullet-list">
+                <li>Refactored an automated Python pipeline to harmonize Global Trade Alerts (GTA) with regional macroeconomic indicators.</li>
+                <li>Established the empirical foundation for longitudinal analysis of sectoral industrial policy interventions in Asia.</li>
+            </ul>
+            <button class="toggle-btn" onclick="toggleCode('code1')">View Integration Logic</button>
+            <a href="https://github.com/arthurx06/IPWG_GTA_Industrial_Policy_Analysis_ax" target="_blank" style="margin-left: 10px; font-size: 0.85em; font-weight: bold;">View Repository &rarr;</a>
+            
+            <div id="code1" class="code-block">
+# Pipeline for harmonizing GTA HS-level data with Fund-standard CPC formats
+import pandas as pd
+from GTA_format_func_CL_batch_ax import *
+
+gta_hs = hs_to_long()
+gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
+gta_hs_full = add_variables(gta_hs_fill, AJ_string())
+            </div>
+        </div>
+
+        <div class="paper-item">
+            <span class="tech-tag">Real Sector | Regional Surveillance</span>
+            <span class="paper-meta">Asia-Pacific Dept (APD) | Regional Economic Outlook | October 2025</span>
+            <span class="paper-title">“Navigating Structural Shifts—Aging, Innovation, and Trade”</span>
+            <ul class="bullet-list">
+                <li>Executed panel regression analysis to quantify the impact of demographic shifts on regional innovation capacity.</li>
+                <li>Evaluated macroeconomic spillovers and trade dynamics across 15+ Asian economies.</li>
+            </ul>
+            <a href="https://www.imf.org/-/media/files/publications/reo/apd/2025/october/english/text.pdf" target="_blank">View Publication &rarr;</a>
+        </div>
+
+        <div class="paper-item">
+            <span class="tech-tag">Fiscal Sector | Debt Policy</span>
+            <span class="paper-meta">Strategy, Policy, and Review Dept (SPR) | Policy Review | November 2024</span>
+            <span class="paper-title">“Review of the Bank-Fund Debt Sustainability Framework for LICs”</span>
+            <ul class="bullet-list">
+                <li>Constructed a historical database of DSA outcomes (2017–2023) to evaluate the performance of the LIC-DSF framework.</li>
+                <li>Performed empirical testing of debt-threshold breaches to inform methodological improvements to sovereign risk assessments.</li>
+            </ul>
+            <a href="https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099112524182095863" target="_blank">View Publication &rarr;</a>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-meta">Asia-Pacific Dept (APD) | Regional Economic Outlook | October 2024</span>
+            <span class="paper-title">“Resilient Growth but Higher Risks”</span>
+            <a href="https://www.imf.org/-/media/files/publications/reo/apd/2024/october/english/text.pdf" target="_blank">View Publication &rarr;</a>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-meta">Strategy, Policy, and Review Dept (SPR) | Country Report | December 2023</span>
+            <span class="paper-title">“Somalia: Enhanced HIPC Initiative Completion Point Analysis”</span>
+            <ul class="bullet-list">
+                <li>Modeled debt-relief scenarios and reconciled creditor data to support Somalia’s completion point decision.</li>
+            </ul>
+            <a href="https://www.imf.org/en/publications/cr/issues/2023/12/18/somalia-enhanced-heavily-indebted-poor-countries-initiative-completion-point-document-542591" target="_blank">View Publication &rarr;</a>
+        </div>
+
+        <div class="paper-item">
+            <span class="paper-meta">United Nations | Strategy, Policy, and Review Dept (SPR) | April 2023</span>
+            <span class="paper-title">“Financing for Sustainable Development Report 2023 – Chapter 3”</span>
+            <a href="https://financing.desa.un.org/iatf/report/financing-sustainable-development-report-2023" target="_blank">View Publication &rarr;</a>
+        </div>
     </div>
 
-    <div class="project-entry">
-        <h3>Canadian Agricultural Exports to China</h3>
-        <p>Analyzing the drivers of export growth, focusing on the interplay between Chinese domestic demand and evolving tariff barriers.</p>
+    <div class="section">
+        <h2>Technical Expertise & Data Literacy</h2>
+        <div class="expertise-grid">
+            <div>
+                <strong>Econometric Software</strong>
+                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em; color: #4a5568;">
+                    <li>Stata, Python (Pandas, pdblp), R</li>
+                    <li>Tableau, PowerBI</li>
+                    <li>AI Agent Integration (OpenClaw/LLMs)</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Specialized Databases</strong>
+                <ul style="margin: 5px 0; padding-left: 15px; font-size: 0.92em; color: #4a5568;">
+                    <li>Haver Analytics, CEIC, Bloomberg</li>
+                    <li>IMF WEO, IFS, DOTS, PortWatch</li>
+                    <li>Refinitiv, TDM, UN COMTRADE</li>
+                    <li>World Bank IDS, IIF Debt Monitor</li>
+                </ul>
+            </div>
+        </div>
+        <p style="font-size: 0.85em; margin-top: 15px; color: #718096;">
+            <strong>Core Competencies:</strong> Sovereign Debt Sustainability (LIC-DSF), External Sector Assessment, China-ASEAN Spillovers, Data Harmonization, Geopolitical Risk.
+        </p>
     </div>
-</section>
 
-<section id="expertise">
-    <h2>Technical Expertise</h2>
-    <ul>
-        <li><strong>Languages:</strong> Stata (Econometrics), Python (Data Pipelines), R</li>
-        <li><strong>Tools:</strong> Bloomberg Terminal (pdblp), Tableau, PowerBI</li>
-        <li><strong>Databases:</strong> Haver Analytics, CEIC, IMF PortWatch, GTA</li>
-    </ul>
-</section>
-
-<footer>
-    <p style="text-align: center; color: #7f8c8d; font-size: 0.8rem;">&copy; 2026 Arthur Xie. All rights reserved.</p>
-</footer>
-
+    <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #e2e8f0; color: #a0aec0; font-size: 0.85em;">
+        Arthur Xie | Professional Portfolio | 2026
+    </div>
 </body>
 </html>
