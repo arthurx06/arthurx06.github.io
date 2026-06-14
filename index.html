@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +19,10 @@
         .code-block { background: #1a202c; color: #edf2f7; padding: 18px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.85em; overflow-x: auto; margin-top: 15px; display: none; border-left: 4px solid #63b3ed; }
         .toggle-btn { background: #ebf8ff; border: 1px solid #90cdf4; color: #2c5282; padding: 5px 12px; cursor: pointer; border-radius: 3px; font-size: 0.75em; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
         .toggle-btn:hover { background: #bee3f8; }
-        
         .cv-container { margin-top: 20px; margin-bottom: 30px; }
         .cv-btn { background: #2c5282; color: white !important; padding: 10px 20px; border-radius: 4px; font-weight: bold; font-size: 0.95em; text-decoration: none; display: inline-block; border: none; transition: background 0.3s; }
         .cv-btn:hover { background: #1a365d; border-bottom: none !important; }
         .update-note { font-size: 0.85em; color: #718096; margin-left: 12px; font-style: italic; vertical-align: middle; }
-
         .tech-tag { display: inline-block; background: #edf2f7; color: #4a5568; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; margin-bottom: 8px; font-weight: 700; border: 1px solid #e2e8f0; }
         a { color: #3182ce; text-decoration: none; border-bottom: 1px solid transparent; }
         a:hover { border-bottom: 1px solid #3182ce; }
@@ -31,8 +30,9 @@
         .expertise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; background: #f8fafc; padding: 20px; border-radius: 4px; border: 1px solid #e2e8f0; }
         .contact-info { font-size: 0.95em; color: #4a5568; margin-top: 5px; }
         .top-competencies { font-size: 0.9em; color: #2c5282; margin-top: 10px; font-weight: 600; border-left: 3px solid #2c5282; padding-left: 10px; background: #f0f4f8; padding: 8px 10px; border-radius: 0 4px 4px 0; }
-        
         .institution-note { font-size: 0.82em; color: #718096; margin-top: 8px; line-height: 1.4; border-top: 1px solid #edf2f7; padding-top: 8px; font-style: italic; }
+        .pipeline-section { margin-top: 16px; border-top: 1px solid #e2e8f0; padding-top: 14px; }
+        .pipeline-section-title { font-size: 0.88em; font-weight: 700; color: #2c5282; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
     </style>
     <script>
         function toggleCode(id) {
@@ -45,12 +45,12 @@
     <h1>Arthur Xie</h1>
     <p class="subtitle">Macroeconomist | Economic Surveillance & Sovereign Risk Researcher</p>
     <p class="contact-info">MA (JHU SAIS), BA (UBC) | Bilingual: English & Mandarin Chinese</p>
-    
+
     <div class="top-competencies">
         <strong>Focus Areas:</strong> Sovereign Debt Sustainability (LIC-DSF), Regional Economic & Financial Markets Surveillance, China Macro Policy Monitoring, Geopolitical Risk Scenario Analysis & Quantification. <br>
         <strong>Technical Depth:</strong> Advanced Econometric Modeling (VAR, VECM) in Stata/Python; Alternative Data Analysis for Real-Time Trade Monitoring.
     </div>
-    
+
     <div class="cv-container">
         <a href="Resume_ArthurXie_Research_April2026.pdf" class="cv-btn" download>Download Latest CV (PDF)</a>
         <span class="update-note">Last updated: April 2026</span>
@@ -72,36 +72,84 @@
     <div class="section">
         <h2>Current Research & Reproduction</h2>
         <div class="paper-item" style="border-top: 4px solid #2b6cb0;">
-            <span class="tech-tag">External Sector | Python (Bloomberg API)</span>
-            <span class="paper-title">Equilibrium Exchange Rate Modeling: RMB Misalignment</span>
+            <span class="tech-tag">China Macro | Python (SF Fed · Bloomberg · EastMoney) | PCA · Fernandez-Denton · SVAR</span>
+            <span class="paper-title">Quarterly Chinese GDP Dataset Construction & Forecasting</span>
+            <span class="paper-meta">Replication — Chen, Higgins &amp; Zha (2024), NBER Working Paper</span>
             <ul class="bullet-list">
-                <li>Reproduction of the Cheung, Chinn, and Fujii (2007) framework using 2026 real-time fundamentals to assess currency valuation risks.</li>
-                <li>Utilized <strong>pdblp</strong> to extract REER, productivity differentials, and NFA data from Bloomberg.</li>
+                <li>Reproduced the full pipeline for constructing quarterly real GDP-exp for China from 2001 to 2025, correcting for the artificial smoothness in NBS official quarterly data — a documented problem in the literature where the NBS back-interpolates quarterly figures from annual totals.</li>
+                <li>Built the alternative China Cyclical Activity Tracker (C-CAT) by extracting the first principal component (PC1) via PCA across 8 monthly hard-data indicators: industrial production, electricity output, exports, fixed asset investment, railway freight, retail sales, floor space started, and consumer confidence. PC1 explains 57.5% of total variance with all factor loadings positive — confirming a strong common economic cycle. Key methodological choice: indicators are not detrended before PCA (unlike the SF Fed version), preserving the full trend-plus-cycle signal needed for interpolation.</li>
+                <li>Applied the Fernandez (1981) constrained interpolation method to distribute known NBS annual real GDP-exp into quarterly observations guided by the C-CAT. The Fernandez slope coefficient β₁ = 1.18 — statistically confirming NBS smoothing, since β₁ = 1.0 would indicate no distortion. Applied Denton (1971) proportional adjustment for exact annual adding-up at Economic Census anchor years.</li>
+                <li>Decomposed quarterly GDP into six expenditure components (household consumption, government consumption, GFCF, inventories, exports, imports) using component-specific monthly interpolators plus a common C-CAT adjustment factor — ensuring all components are consistent with the corrected aggregate rather than NBS's smooth version.</li>
+                <li>Estimated a four-variable Structural VAR (GDP growth, electricity, IP, exports) on the corrected quarterly series with Cholesky identification (ordering: physical indicators → aggregate output) to produce forward-looking impulse responses and GDP growth nowcasts.</li>
             </ul>
-            <button class="toggle-btn" onclick="toggleCode('codeRMB')">View Modeling Logic</button>
-            <div id="codeRMB" class="code-block">
-import pdblp
-con = pdblp.BCon(port=8194, timeout=5000)
-con.start()
-tickers = ['REERCHIN Index', 'CHNBOPN Index', 'CHGDPPC Index']
-df = con.bdh(tickers, 'PX_LAST', '20100101', '20260315')
+
+            <div class="pipeline-section">
+                <div class="pipeline-section-title">Pipeline Structure & Code Logic</div>
+                <button class="toggle-btn" onclick="toggleCode('codeMain')">View Code</button>
+                <div id="codeMain" class="code-block">
+# =============================================================================
+# CHINA QUARTERLY GDP PIPELINE — Chen, Higgins & Zha (2024) NBER Replication
+# Python (pandas, sklearn, statsmodels) + Stata (SVAR estimation)
+# Data: SF Fed C-CAT · Bloomberg · EastMoney · SAFE BOP
+# =============================================================================
+
+# SECTION I — DATA INGESTION
+#   Align all raw series to a master quarterly index (2000Q1–2025Q4).
+#   Parse EastMoney Chinese date strings; load SF Fed YoY growth rates
+#   for 8 indicators; load Bloomberg annual NBS national accounts and deflators;
+#   load SAFE BOP quarterly exports/imports (2013Q1+).
+
+# SECTION II — C-CAT CONSTRUCTION (PCA)
+#   Convert SF Fed YoY% → quarterly log-differences (YoY / 400).
+#   Standardise each series to zero mean, unit variance (required: PCA is
+#   scale-sensitive — without this, noisiest series dominates).
+#   Extract PC1 via sklearn PCA: explains 57.5% of variance across all 8.
+#   All factor loadings positive — confirms strong common economic cycle.
+#   Key choice: no detrending before PCA (unlike SF Fed version), preserving
+#   trend signal needed for the interpolation step.
+
+# SECTION III — FERNANDEZ-DENTON INTERPOLATION
+#   OLS on anchor years: annual_GDP_growth = β₀ + β₁ × annual_avg(C-CAT).
+#   β₁ = 1.176 — statistically proves NBS smoothing (if accurate: β₁ = 1.0).
+#   Apply quarterly: growth_q = β₀ + β₁ × C-CAT_q, then shift all 4 quarters
+#   uniformly so their average matches NBS annual growth at anchor years.
+#   Denton proportional adjustment: scale factor ≈ 1.0 enforces exact adding-up.
+#   Two stages: loose constraint 2001–2018 (anchor years only);
+#               tight constraint 2019–2025 (every year — NBS improved post-2018).
+
+# SECTION IV — EXPENDITURE SUBCOMPONENTS
+#   Each of 6 components (HH consumption, Govt, GFCF, inventories, exports,
+#   imports) uses a component-specific monthly interpolator plus the C-CAT
+#   adjustment factor (= our GDP growth − NBS GDP growth), ensuring all
+#   components are consistent with the corrected aggregate, not NBS's smooth version.
+#   Final consistency: proportional scaling of domestic components + quadratic
+#   solve for exports/imports balance: X·a − M/a = NX_target.
+
+# SECTION V — SVAR FORECASTING (Stata)
+#   4-variable SVAR: GDP growth, electricity, IP, exports on corrected series.
+#   Cholesky identification: electricity → IP → exports → GDP (physical
+#   indicators causally prior within quarter; GDP aggregate last).
+#   ADF stationarity tests → lag selection (varsoc) → Johansen cointegration
+#   check → svar estimation → irf/fevd → rolling out-of-sample forecast.
+#   C-CAT at −1.7 to −2.4 std dev in late 2025 signals below-trend activity;
+#   SVAR impulse responses point to downside risk to NBS 5% target in 2026Q1.
+                </div>
             </div>
         </div>
     </div>
-    
+
     <div class="section">
         <h2>Past Research Contributions</h2>
 
         <div class="paper-item">
-            <span class="tech-tag">Pipeline Integration | Data Harmonization</span>
-            <span class="paper-meta">Asia-Pacific Dept (APD) | IMF Asia in 2050 Conference Paper | 2026</span>
-            <span class="paper-title">“Industrial Policy in Asia”</span>
+            <span class="tech-tag">Industrial Policy | Python (Text Analytics · GTA Database)</span>
+            <span class="paper-meta">IMF Working Paper | Asia-Pacific Department (APD) | Published: May 2025</span>
+            <span class="paper-title">"A New Wave of Industrial Policy in Asia-Pacific"</span>
             <ul class="bullet-list">
-                <li>Refactored an automated Python pipeline to harmonize Global Trade Alerts (GTA) with regional macroeconomic indicators.</li>
-                <li>Established the empirical foundation for longitudinal analysis of sectoral industrial policy interventions.</li>
+                <li>Contributed to the construction of a new industrial policy dataset using Python-based text analytics on the Global Trade Alerts (GTA) database, providing the empirical foundation for the paper's analysis of Asian industrial policy evolution.</li>
             </ul>
-            <button class="toggle-btn" onclick="toggleCode('code1')">View Integration Logic</button>
-            <a href="https://github.com/arthurx06/IPWG_GTA_Industrial_Policy_Analysis_ax" target="_blank" style="margin-left: 10px; font-size: 0.85em; font-weight: bold;">View Repository &rarr;</a>
+            <a href="https://www.imf.org/en/publications/wp/issues/2026/05/22/a-new-wave-of-industrial-policy-in-asia-pacific-could-resurgence-lead-to-structural-576303" target="_blank" style="display:inline-block; margin-top:10px; font-size:0.85em; font-weight:bold;">View IMF Working Paper &rarr;</a>
+            <button class="toggle-btn" onclick="toggleCode('code1')" style="margin-left:10px;">View Integration Logic</button>
             <div id="code1" class="code-block">
 import pandas as pd
 from GTA_format_func_CL_batch_ax import *
@@ -112,48 +160,48 @@ gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
 
         <div class="paper-item">
             <span class="paper-meta">Asia-Pacific Dept (APD) | Regional Economic Outlook | October 2025</span>
-            <span class="paper-title">“Navigating Structural Shifts—Aging, Innovation, and Trade”</span>
+            <span class="paper-title">"Navigating Structural Shifts—Aging, Innovation, and Trade"</span>
             <a href="https://www.imf.org/-/media/files/publications/reo/apd/2025/october/english/text.pdf" target="_blank">View Publication &rarr;</a>
         </div>
 
         <div class="paper-item">
             <span class="paper-meta">Asia-Pacific Dept (APD) | April 2025</span>
-            <span class="paper-title">“Regional Economic Outlook for Asia and Pacific”</span>
+            <span class="paper-title">"Regional Economic Outlook for Asia and Pacific"</span>
             <p style="font-size: 0.9em; color: #718096; margin-top: 5px;">Note: Contributions focused on internal conjunctural chapter and analytical notes presentation.</p>
             <a href="https://www.imf.org/en/publications/reo/apac/issues/2025/04/24/regional-economic-outlook-for-asia-and-pacific-april-2025" target="_blank">View Landing Page &rarr;</a>
         </div>
 
         <div class="paper-item">
             <span class="paper-meta">Strategy, Policy, and Review Dept (SPR) | Policy Review | November 2024</span>
-            <span class="paper-title">“Review of the Bank-Fund Debt Sustainability Framework for LICs”</span>
+            <span class="paper-title">"Review of the Bank-Fund Debt Sustainability Framework for LICs"</span>
             <a href="https://documents.worldbank.org/en/publication/documents-reports/documentdetail/099112524182095863" target="_blank">View Publication &rarr;</a>
         </div>
 
         <div class="paper-item">
             <span class="paper-meta">Asia-Pacific Dept (APD) | Regional Economic Outlook | October 2024</span>
-            <span class="paper-title">“Resilient Growth but Higher Risks”</span>
+            <span class="paper-title">"Resilient Growth but Higher Risks"</span>
             <a href="https://www.imf.org/-/media/files/publications/reo/apd/2024/october/english/text.pdf" target="_blank">View Publication &rarr;</a>
         </div>
 
         <div class="paper-item">
             <span class="paper-meta">Strategy, Policy, and Review Dept (SPR) | Country Report | December 2023</span>
-            <span class="paper-title">“Somalia: Enhanced HIPC Initiative Completion Point Analysis”</span>
+            <span class="paper-title">"Somalia: Enhanced HIPC Initiative Completion Point Analysis"</span>
             <a href="https://www.imf.org/en/publications/cr/issues/2023/12/18/somalia-enhanced-heavily-indebted-poor-countries-initiative-completion-point-document-542591" target="_blank">View Publication &rarr;</a>
         </div>
 
         <div class="paper-item">
             <span class="paper-meta">United Nations | April 2023</span>
-            <span class="paper-title">“Financing for Sustainable Development Report 2023 – Chapter 3”</span>
+            <span class="paper-title">"Financing for Sustainable Development Report 2023 – Chapter 3"</span>
             <a href="https://financing.desa.un.org/iatf/report/financing-sustainable-development-report-2023" target="_blank">View Publication &rarr;</a>
         </div>
     </div>
 
     <div class="section">
         <h2>Other Publications</h2>
-        
+
         <div class="paper-item">
             <span class="paper-meta">Asia-Pacific Foundation of Canada | Policy & Public Opinion Analysis</span>
-            <span class="paper-title">“Energy Exports and Asia: Divergent Western Canadian Perspectives”</span>
+            <span class="paper-title">"Energy Exports and Asia: Divergent Western Canadian Perspectives"</span>
             <div class="institution-note">
                 The Asia-Pacific Foundation of Canada (Fondation Asie Pacifique du Canada) was created by an Act of Parliament in 1984 (the Asia-Pacific Foundation of Canada Act) to serve as Canada's leading center for research and analysis on Asia-Pacific relations.
             </div>
@@ -162,7 +210,7 @@ gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
 
         <div class="paper-item">
             <span class="paper-meta">Caixin Global | Socio-Cultural Analysis</span>
-            <span class="paper-title">“China Dresses Up Its Fashion: Reviving Colorful Imperial-Era Costumes”</span>
+            <span class="paper-title">"China Dresses Up Its Fashion: Reviving Colorful Imperial-Era Costumes"</span>
             <div class="institution-note">
                 Caixin is China's leading financial and investigative news organization. This piece includes an expert interview with Tsinghua University faculty on cultural revivalism.
             </div>
@@ -171,7 +219,7 @@ gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
 
         <div class="paper-item">
             <span class="paper-meta">Caixin Global | Photo Essay</span>
-            <span class="paper-title">“Photo Essay: Confucius Says Congratulations on Completing Kindergarten”</span>
+            <span class="paper-title">"Photo Essay: Confucius Says Congratulations on Completing Kindergarten"</span>
             <a href="https://www.caixinglobal.com/2017-07-28/photo-essay-confucius-says-congratulations-on-completing-kindergarten-101123533.html" target="_blank">View Article &rarr;</a>
         </div>
     </div>
@@ -225,3 +273,4 @@ gta_hs_fill = cpc_hs_convert(gta_hs, format_cpc(), correspondence_table)
     </div>
 </body>
 </html>
+```
